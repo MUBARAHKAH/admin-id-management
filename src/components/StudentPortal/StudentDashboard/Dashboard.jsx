@@ -11,9 +11,7 @@ const Dashboard = () => {
       {/* <Header /> */}
       <div className="flex max-lg:flex-col gap-[1rem]  ">
         <ProfileOverview />
-        <IdCardDetails />
       </div>
-      <LatestNews />
       <Outlet />
     </div>
   );

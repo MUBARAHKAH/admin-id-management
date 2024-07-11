@@ -10,6 +10,7 @@ import {
   UserCircle,
   Edit,
   Edit3,
+  LoaderPinwheel,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
 import identityCardIcon from "../../assets/id-card.png";
@@ -45,7 +46,7 @@ export default function Sidebar() {
           <ul className="flex-1 px-3">
             <SidebarItem
               icon={<LayoutDashboard size={24} />}
-              text="Dashboard"
+              text="All users"
               to="/"
               id="dashboard"
               link="/"
@@ -60,19 +61,13 @@ export default function Sidebar() {
               link="/identity-cards"
             />
             <SidebarItem
-              icon={<UserCircle size={24} />}
+              icon={<LoaderPinwheel size={24} />}
               text="Status"
               to="/status"
               id="status"
               link="/registration-status"
             />
-            <SidebarItem
-              icon={<UserCircle size={24} />}
-              text="Profile Overview"
-              to="/profile-overview"
-              id="profile"
-              link="/profile-overview"
-            />
+          
             <SidebarItem
               icon={<Edit3 size={24} />}
               text="Edit Profile"

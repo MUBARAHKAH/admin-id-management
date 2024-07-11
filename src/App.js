@@ -38,14 +38,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/register" element={<StudentPortal />} />
-        <Route path="/Login" element={<Login />} />
+      
         <Route path="*" element={<h2>Error 404 page not found</h2>} />
 
         {/* New Layout Routes */}
         <Route
           path="/"
-          element={sessionData ? <Layout /> : <Navigate to={"/login"} />}
+          element={<Layout /> }
         >
           {/* Include Header and Sidebar here */}
 
@@ -55,9 +54,6 @@ export default function App() {
             <Route path="qr-code-display" element={<QrCodeDisplay />} />
           </Route>
 
-          <Route path="/registration-status" element={<RegistrationStatus />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="/document-management" element={<DocumentManagement />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile-overview" element={<ProfileOverview />} />
           <Route path="/edit-profile" element={<EditProfile />} />
