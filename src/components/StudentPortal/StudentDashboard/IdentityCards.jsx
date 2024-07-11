@@ -11,7 +11,9 @@ const IdentityCards = () => {
   useEffect(() => {
     (async function fetchUserData() {
       try {
-        const response = await fetch(`http://localhost:3001/idcard`);
+        const response = await fetch(
+          `https://studentbackendportal.onrender.com/idcard`
+        );
         const data = await response.json();
         setIdcards(data);
       } catch (error) {

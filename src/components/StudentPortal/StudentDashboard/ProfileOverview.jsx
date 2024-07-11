@@ -11,7 +11,9 @@ const ProfileOverview = ({ userData }) => {
   useEffect(() => {
     (async function fetchUserData() {
       try {
-        const response = await fetch(`http://localhost:3001/users`);
+        const response = await fetch(
+          `https://studentbackendportal.onrender.com/users`
+        );
         const data = await response.json();
         setUsers(data);
       } catch (error) {
@@ -22,9 +24,12 @@ const ProfileOverview = ({ userData }) => {
   const navigate = useNavigate();
   const handleSubmit = async (userId) => {
     try {
-      const response = await axios.post(`http://localhost:3001/createId`, {
-        userId,
-      });
+      const response = await axios.post(
+        `https://studentbackendportal.onrender.com/createId`,
+        {
+          userId,
+        }
+      );
       if (response.status === 201) {
         navigate("/identity-cards");
       }
