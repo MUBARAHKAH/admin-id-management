@@ -61,7 +61,10 @@ const ProfileOverview = ({ userData }) => {
               >
                 <div className="text-center mb-8 ">
                   <img
-                    src={photo || "https://via.placeholder.com/150"}
+                    src={
+                      `https://studentbackendportal.onrender.com/assets/${photo}` ||
+                      "https://via.placeholder.com/150"
+                    }
                     alt="Profile"
                     className="rounded-full w-24 h-24 mx-auto"
                   />

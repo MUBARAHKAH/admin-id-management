@@ -41,7 +41,7 @@ const IdentityCards = () => {
         {idcards.length > 0 ? (
           idcards.map(
             (
-              { fullName, _id, matricNimber, level, department, email, userId },
+              { fullName, _id, matricNimber, level, department, email, userId,photo },
               index
             ) => (
               <div
@@ -56,6 +56,7 @@ const IdentityCards = () => {
                     level,
                     department,
                     email,
+                    photo
                   }}
                 />
                 <div

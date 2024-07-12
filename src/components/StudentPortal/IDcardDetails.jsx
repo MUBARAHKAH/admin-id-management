@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "../../context/session";
 
 const IdCardDetails = ({ data }) => {
-  const { fullName, matricNimber, department, level, email } = data;
+  const { fullName, matricNimber, department, level, email, photo } = data;
 
   return (
     <div>
       <div className="text-center mb-8 ">
         <img
-          src={"https://via.placeholder.com/150"}
+          src={
+            `https://studentbackendportal.onrender.com/assets/${
+              photo && photo
+            }` || "https://via.placeholder.com/150"
+          }
           alt="Profile"
           className="rounded-full w-24 h-24 mx-auto"
         />
