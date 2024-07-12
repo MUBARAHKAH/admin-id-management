@@ -1,10 +1,9 @@
 import React from "react";
 import IdCardDetails from "../IDcardDetails";
-import QRCode from "./QrCodeDisplay";
-import { Outlet } from "react-router-dom";
-import QrCodeDisplay from "./QrCodeDisplay";
 import { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const IdentityCards = () => {
   const [idcards, setIdcards] = useState([]);
@@ -21,6 +20,17 @@ const IdentityCards = () => {
       }
     })();
   }, []);
+  const navigate = useNavigate();
+  const HandleDelete = async (_id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/idcard/delete/${_id}`
+      );
+      if (response.status === 200) navigate("/");
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
   return (
     <div className="flex flex-col gap-[2rem] p-[2rem_1rem]  w-full">
       <div className="flex max-lg:flex-col justify-between  gap-[1rem]">
@@ -29,16 +39,36 @@ const IdentityCards = () => {
 
       <div className="flex flex-wrap gap-[1rem] justify-center items-center">
         {idcards.length > 0 ? (
-          idcards.map((data, _id) => (
-            <div
-              className=" rounded-md p-8 w-full  bg-white  sm:w-[40%]"
-              key={_id}
-            >
-              <IdCardDetails data={data} />
-            </div>
-          ))
+          idcards.map(
+            (
+              { fullName, _id, matricNimber, level, department, email, userId },
+              index
+            ) => (
+              <div
+                className="space-y-[1rem] rounded-md p-8 w-full  bg-white  sm:w-[40%]"
+                key={index}
+              >
+                <IdCardDetails
+                  data={{
+                    fullName,
+                    _id,
+                    matricNimber,
+                    level,
+                    department,
+                    email,
+                  }}
+                />
+                <div
+                  className="bg-red-500 text-white cursor-pointer text-center w-full p-[1rem] rounded-md"
+                  onClick={() => HandleDelete(userId)}
+                >
+                  Revoke Id card
+                </div>
+              </div>
+            )
+          )
         ) : (
-          <div>Loading</div>
+          <div>No Idcards Found</div>
         )}
       </div>
     </div>

@@ -3,7 +3,7 @@ import { useSession } from "../../context/session";
 
 const IdCardDetails = ({ data }) => {
   const { fullName, matricNimber, department, level, email } = data;
-  console.log(data);
+
   return (
     <div>
       <div className="text-center mb-8 ">
