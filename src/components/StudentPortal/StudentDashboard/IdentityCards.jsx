@@ -24,7 +24,7 @@ const IdentityCards = () => {
   const HandleDelete = async (_id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/idcard/delete/${_id}`
+        `https://studentbackendportal.onrender.com/idcard/delete/${_id}`
       );
       if (response.status === 200) navigate("/");
     } catch (error) {
