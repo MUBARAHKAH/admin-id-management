@@ -1,96 +1,141 @@
 // src/student-dashboard/Sidebar.jsx
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ChevronFirst,
   ChevronLast,
-  MoreVertical,
-  LifeBuoy,
   LayoutDashboard,
   UserCircle,
   Edit,
-  Edit3,
   LoaderPinwheel,
+  StopCircle,
+  StopCircleIcon,
+  Delete,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
 import identityCardIcon from "../../assets/id-card.png";
 import registrationIcon from "../../assets/contact-form.png";
 import documentIcon from "../../assets/manage.png";
 import notificationIcon from "../../assets/notification.png";
+import { useSession } from "../../../context/session";
 
 const SidebarContext = createContext();
 
 export default function Sidebar() {
   const [expanded, setExpanded] = useState(false);
+  const [logoutToggle, setLogoutToggle] = useState(true);
   const [openItem, setOpenItem] = useState(null); // State to keep track of the currently open item
+  const { logout } = useSession();
+  const [user, setUser] = useState("");
+  const [mobileNav, setMobileNav] = useState(false);
 
   const handleToggle = () => {
     setExpanded(!expanded);
   };
-
+  const handleLogout = () => {
+    logout();
+    window.location.reload();
+  };
   return (
-    <aside className="fixed h-screen bg-white mr-[3rem] mt-[3rem]">
-      <nav
-        className={`h-full flex flex-col mt-[5rem] justify-between  shadow-sm transition-all duration-300 `}
-      >
-        <div className=" p-4 pb-2 flex justify-between items-center ">
-          {/* Adjusted placement to top-right corner */}
-          <button
-            onClick={handleToggle}
-            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 ml-auto"
-          >
-            {expanded ? <ChevronFirst /> : <ChevronLast />}
-          </button>
-        </div>
-        <SidebarContext.Provider value={{ expanded, openItem, setOpenItem }}>
-          <ul className="flex-1 px-3">
-            <SidebarItem
-              icon={<LayoutDashboard size={24} />}
-              text="All users"
-              to="/"
-              id="dashboard"
-              link="/"
-            />
-            <SidebarItem
-              icon={
-                <img src={identityCardIcon} alt="Id Card" className="w-5" />
-              }
-              text="ID Card"
-              to="/id-card"
-              id="id-card"
-              link="/identity-cards"
-            />
-            <SidebarItem
-              icon={<LoaderPinwheel size={24} />}
-              text="Status"
-              to="/status"
-              id="status"
-              link="/registration-status"
-            />
-          
-            <SidebarItem
-              icon={<Edit3 size={24} />}
-              text="Edit Profile"
-              to="/edit-profile"
-              id="profile"
-              link="/edit-profile"
-            />
-          </ul>
-        </SidebarContext.Provider>
-        <div className="border-t flex p-3 items-center">
-          <img src="#" alt="Profile" className="w-10 h-10 rounded-full" />
-          <div
-            className={`flex flex-col ml-3 transition-all duration-300 ${
-              expanded ? "block" : "hidden"
-            }`}
-          >
-            <h4 className="font-semibold">Unilorin</h4>
-            <span className="text-xs text-gray-600">ID Management</span>
+    <div>
+      <div className="fixed  mt-[4rem] p-4 pb-2 flex justify-between items-center ">
+        <button
+          onClick={() => setMobileNav((prev) => !prev)}
+          className="p-1.5 rounded-lg bg-white "
+        >
+          {expanded ? <ChevronFirst /> : <ChevronLast />}
+        </button>
+      </div>
+      {mobileNav && (
+        <aside className="fixed h-[100vh] bg-white  ">
+          <div className="  mt-[4rem] p-4 pb-2 flex justify-between items-center ">
+            <button
+              onClick={() => setMobileNav((prev) => !prev)}
+              className="p-1.5 rounded-lg bg-white "
+            >
+              <Delete />
+            </button>
           </div>
-          <MoreVertical size={20} className="ml-auto" />
-        </div>
-      </nav>
-    </aside>
+          <div className="  mt-[2rem] p-4 pb-2 flex justify-between items-center ">
+            <button
+              onClick={handleToggle}
+              className="p-1.5 rounded-lg bg-white "
+            >
+              {expanded ? <ChevronFirst /> : <ChevronLast />}
+            </button>
+          </div>
+          <nav
+            className={`h-full flex flex-col  justify-between  shadow-sm transition-all duration-300 `}
+          >
+            <SidebarContext.Provider
+              value={{ expanded, openItem, setOpenItem }}
+            >
+              <ul className="flex-1  px-3">
+                <div className="p-[0.2rem] rounded-lg ml-auto ">
+                  <SidebarItem
+                    icon={<LayoutDashboard size={24} />}
+                    text="Dashboard"
+                    to="/"
+                    id="dashboard"
+                    link="/"
+                  />
+                </div>
+
+                <SidebarItem
+                  icon={
+                    <img src={identityCardIcon} alt="Id Card" className="w-5" />
+                  }
+                  text="ID Card"
+                  to="/id-card"
+                  id="id-card"
+                  link="/identity-cards"
+                />
+                <SidebarItem
+                  icon={<LoaderPinwheel size={24} />}
+                  text="Status"
+                  to="/status"
+                  id="status"
+                  link="/registration-status"
+                />
+                <SidebarItem
+                  icon={<UserCircle size={24} />}
+                  text="Profile Overview"
+                  to="/profile-overview"
+                  id="profile"
+                  link="/profile-overview"
+                />
+                <SidebarItem
+                  icon={<Edit size={24} />}
+                  text="Edit Profile"
+                  to="/edit-profile"
+                  id="profile"
+                  link="/edit-profile"
+                />
+                <div className="relative flex  flex-col gap-[1rem]  border-t  pt-[1rem] items-center">
+                  <div
+                    className={`left-[50px] cursor-pointer absolute top-0 p-[1rem] bg-gray-50 ${
+                      logoutToggle ? "hidden" : "flex"
+                    } rounded-md `}
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </div>
+                  <img
+                    src={
+                      `https://studentbackendportal.onrender.com/assets/${user.photo}` ||
+                      "https://via.placeholder.com/150"
+                    }
+                    alt="Profile"
+                    className="w-10 h-[20] cursor-pointer rounded-full bg-gray-50 "
+                    onClick={() => setLogoutToggle(!logoutToggle)}
+                  />
+                </div>
+              </ul>
+            </SidebarContext.Provider>
+          </nav>
+        </aside>
+      )}
+    </div>
   );
 }
 

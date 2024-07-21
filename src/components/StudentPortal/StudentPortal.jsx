@@ -253,7 +253,6 @@ function StudentPortal() {
       user.append("gender", formData.gender);
       user.append("email", formData.email);
 
-      console.log(user);
       try {
         const res = await axios.post(
           "https://studentbackendportal.onrender.com/auth/register/",
@@ -467,9 +466,8 @@ function StudentPortal() {
             type="submit"
             disabled={loading}
           >
-            {loading && (
-              <img src={loader} className="w-[20px] h-[20px] " alt="Logo" />
-            )}
+            <img src={loader} className="w-[20px] h-[20px] " alt="Logo" />
+          
             Submit
           </button>
         </form>

@@ -9,9 +9,8 @@ const IdCardDetails = ({ data }) => {
       <div className="text-center mb-8 ">
         <img
           src={
-            `https://studentbackendportal.onrender.com/assets/${
-              photo && photo
-            }` || "https://via.placeholder.com/150"
+            `https://studentbackendportal.onrender.com/assets/${photo}` ||
+            "https://via.placeholder.com/150"
           }
           alt="Profile"
           className="rounded-full w-24 h-24 mx-auto"

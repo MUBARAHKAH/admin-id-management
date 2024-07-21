@@ -13,4 +13,7 @@ body {
   .blue_btn {
     @apply bg-indigo-600 text-white px-4 py-2 rounded hover:bg-[#000080] transition-all duration-500;
   }
+  .green_btn {
+    @apply bg-green-600 text-white px-4 py-2 rounded hover:bg-[#000080] transition-all duration-500;
+  }
 }
