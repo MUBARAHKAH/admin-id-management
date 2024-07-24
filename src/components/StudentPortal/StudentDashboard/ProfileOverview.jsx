@@ -26,7 +26,7 @@ const ProfileOverview = () => {
   }, []);
   const navigate = useNavigate();
 
-  const handleSubmit = async (userId, matricNumber) => {
+  const handleSubmit = async (userId, data) => {
     // htmlToImage
     //   .toPng(matricNumber)
     //   .then(function (dataUrl) {
@@ -42,7 +42,7 @@ const ProfileOverview = () => {
         `https://studentbackendportal.onrender.com/createId`,
         {
           userId,
-          qrCodeImage: matricNumber,
+          qrCodeImage: JSON.stringify(data),
         }
       );
       if (response.status === 201) {
@@ -59,7 +59,9 @@ const ProfileOverview = () => {
   return (
     <div className="flex flex-col gap-[1rem] w-full ">
       <div className="flex w-full justify-center  gap-[1rem]">
-        <h2 className="text-xl font-semibold">Users Without IdCard</h2>
+        <h2 className="text-xl font-semibold text-blue-500">
+          Pending Id Cards
+        </h2>
       </div>
       <div className="cursor-pointer flex justify-center  items-center w-full">
         <input
@@ -102,47 +104,48 @@ const ProfileOverview = () => {
                       alt="Profile"
                       className="rounded-full w-24 h-24 mx-auto"
                     />
-                    <h2 className="text-lg font-semibold mt-2">{fullName}</h2>
+                    <h2 className="text-lg font-semibold mt-2 text-green-500">
+                      {fullName}
+                    </h2>
                   </div>
 
                   <div className="">
-                    <div className="text-sm text-gray-600  mb-6 flex  justify-between w-full ">
+                    <div className="flex-col text-sm gap-[0.5rem] text-gray-600  mb-6 flex  justify-between w-full ">
                       <strong>Matric No</strong>{" "}
-                      <p className="text-left">{matricNumber}</p>
+                      <p className="w-full text-right">{matricNumber}</p>
                     </div>
-                    <div className="text-gray-600 mb-6 flex w-full  justify-between">
+                    <div className="flex-col gap-[0.5rem] text-gray-600 mb-6 flex w-full  justify-between">
                       <strong>Department</strong>{" "}
                       <p className="text-right">{department}</p>
                     </div>
-                    <div className="text-gray-600 mb-6 flex w-full  justify-between">
+                    <div className="flex-col gap-[0.5rem] text-gray-600 mb-6 flex w-full  justify-between">
                       <strong>Faculty</strong>{" "}
                       <p className="text-right"> {faculty}</p>
                     </div>
-                    <div className="text-gray-600 mb-6 flex w-full  justify-between">
+                    <div className="flex-col gap-[0.5rem] text-gray-600 mb-6 flex w-full  justify-between">
                       <strong>Level </strong>{" "}
                       <p className="text-right">{level}</p>
                     </div>
-                    <div className="text-gray-600 mb-6 flex w-full  justify-between">
+                    <div className="flex-col gap-[0.5rem] text-gray-600 mb-6 flex w-full  justify-between">
                       <strong>Email </strong>{" "}
                       <p className="text-right">{email}</p>
-                    </div>
-                    <div className="text-gray-600 flex justify-between w-full">
-                      <strong>Phone Number </strong> <p>07011280726</p>
                     </div>
                   </div>
                   <button
                     className="blue_btn mt-[1rem] text-center items-center  justify-center w-full flex gap-[1rem] "
-                    onClick={() => handleSubmit(_id, matricNumber)}
+                    onClick={() =>
+                      handleSubmit(_id, {
+                        fullName,
+                        photo,
+                        level,
+                        faculty,
+                        department,
+                        matricNumber,
+                        email,
+                        _id,
+                      })
+                    }
                   >
-                    {loading && (
-                      <div>
-                        <img
-                          src={loader}
-                          alt="loader"
-                          className="w-[25px] h-[25px]"
-                        />
-                      </div>
-                    )}
                     Generate Id Card & QR Code
                   </button>
                 </div>

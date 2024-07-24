@@ -90,13 +90,7 @@ export default function Sidebar() {
                   id="id-card"
                   link="/identity-cards"
                 />
-                <SidebarItem
-                  icon={<LoaderPinwheel size={24} />}
-                  text="Status"
-                  to="/status"
-                  id="status"
-                  link="/registration-status"
-                />
+
                 <SidebarItem
                   icon={<UserCircle size={24} />}
                   text="Profile Overview"
@@ -104,13 +98,7 @@ export default function Sidebar() {
                   id="profile"
                   link="/profile-overview"
                 />
-                <SidebarItem
-                  icon={<Edit size={24} />}
-                  text="Edit Profile"
-                  to="/edit-profile"
-                  id="profile"
-                  link="/edit-profile"
-                />
+
                 <div className="relative flex  flex-col gap-[1rem]  border-t  pt-[1rem] items-center">
                   <div
                     className={`left-[50px] cursor-pointer absolute top-0 p-[1rem] bg-gray-50 ${

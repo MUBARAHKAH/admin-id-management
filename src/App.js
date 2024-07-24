@@ -38,13 +38,20 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-      
-        <Route path="*" element={<h2>Error 404 page not found</h2>} />
+        <Route
+          path="*"
+          element={
+            <h2 className="h-[100vh] flex justify-center items-center">
+              Error 404 page not found
+            </h2>
+          }
+        />
+        <Route path="/login" element={<Login />} />
 
         {/* New Layout Routes */}
         <Route
           path="/"
-          element={<Layout /> }
+          element={sessionData ? <Layout /> : <Navigate to={"/login"} />}
         >
           {/* Include Header and Sidebar here */}
 
@@ -54,7 +61,6 @@ export default function App() {
             <Route path="qr-code-display" element={<QrCodeDisplay />} />
           </Route>
 
-          <Route path="/help" element={<Help />} />
           <Route path="/profile-overview" element={<ProfileOverview />} />
           <Route path="/edit-profile" element={<EditProfile />} />
         </Route>

@@ -26,15 +26,15 @@ function Login() {
 
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://studentbackendportal.onrender.com/auth/login",
-        data
-      );
-      if (response.status === 200) {
+      if (password === "admin") {
         setLoading(false);
 
-        updateSessionData(response.data);
+        updateSessionData("loggedIn");
         navigate("/");
+      } else {
+        setLoading(false);
+
+        setErrors(`Incorrect Password Please try again`);
       }
     } catch (error) {
       setLoading(false);
@@ -54,22 +54,6 @@ function Login() {
           </p>
           {<p className="text-red-500 text-center w-full my-4"> {errors}</p>}
           <div className="grid gap-8 mt-8">
-            <div className="relative">
-              <label htmlFor="matric_no" className="block text-gray-700 mb-2">
-                Matric Number
-              </label>
-              <input
-                required={true}
-                type="text"
-                value={matricNumber}
-                onChange={handleChange}
-                name="matricNumber"
-                placeholder="Enter your matric number"
-                className="w-full px-4 py-2 border rounded"
-              />
-              {/* <FaUser className="absolute right-5 top-1/2 transform -translate-y-1/2" /> */}
-            </div>
-
             <div className="relative">
               <label htmlFor="password" className="block text-gray-700 mb-2">
                 Password
