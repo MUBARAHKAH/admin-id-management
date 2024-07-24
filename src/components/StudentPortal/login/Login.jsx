@@ -48,7 +48,9 @@ function Login() {
       <img src={logo} className="w-[80px] m-auto" alt="Logo" />
       <div className="wrapper">
         <form onSubmit={handleSubmit}>
-          <h1 className="text-[2rem] font-[500]">Login Your Details!</h1>
+          <h1 className="text-[2rem] font-[500]">
+            Accessing Admin Features, Enter Your Password!
+          </h1>
           <p className=" text-gray-500 text-center mt-2">
             Welcome back! Please enter your Details!
           </p>
@@ -71,14 +73,8 @@ function Login() {
             </div>
           </div>
 
-          <div className="remember-forgot flex justify-between mt-10 mb-8 text-[14.5px]">
-            <div className="flex flex-row gap-2 items-center">
-              <input type="checkbox" className="accent-white w-4 h-4" />
-              <p>Remember for 30 days</p>
-            </div>
-          </div>
           <button
-            className="flex justify-center items-center blue_btn gap-[1rem] w-full"
+            className="flex justify-center items-center blue_btn gap-[1rem] w-full mt-6"
             onClick={handleSubmit}
             type="submit"
             disabled={loading}
@@ -88,15 +84,6 @@ function Login() {
             )}
             Login
           </button>
-
-          <div className="register-link text-[14.5px] text-center mt-8">
-            <p>
-              Don't have an account?{" "}
-              <Link to={"/register"} href="#" className="underline">
-                Register
-              </Link>
-            </p>
-          </div>
         </form>
       </div>
     </div>

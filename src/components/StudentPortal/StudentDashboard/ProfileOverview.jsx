@@ -19,6 +19,7 @@ const ProfileOverview = () => {
         );
         const data = await response.json();
         setUsers(data);
+        console.log(data[1].photo);
       } catch (error) {
         console.error("Failed to fetch user data:", error);
       }
