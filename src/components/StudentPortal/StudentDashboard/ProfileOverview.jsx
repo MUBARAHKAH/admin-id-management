@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import * as htmlToImage from "html-to-image";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import loader from "../../assets/loader.svg";
+import loader from "../../assets/loading.png";
 
 const ProfileOverview = () => {
   const [users, setUsers] = useState([]);
@@ -11,6 +11,15 @@ const ProfileOverview = () => {
   const [searchValue, setSearchValue] = useState("");
   // const [qrCodeImage, setQrcodeImage] = useState("");
   // const qrCodeRef = useRef(null);
+  const UsersPerPage = 2;
+  const [currentPage, setCurrenPage] = useState(1);
+  const endIndex = UsersPerPage * currentPage;
+
+  const startIndex = 0;
+  console.log({ startIndex, endIndex });
+  const handlePageClick = () => {
+    setCurrenPage((prev) => prev + 1);
+  };
   useEffect(() => {
     (async function fetchUserData() {
       try {
@@ -18,25 +27,15 @@ const ProfileOverview = () => {
           `https://studentbackendportal.onrender.com/users`
         );
         const data = await response.json();
-        setUsers(data);
-        console.log(data[1].photo);
+        setUsers(data.slice(startIndex, endIndex));
       } catch (error) {
         console.error("Failed to fetch user data:", error);
       }
     })();
-  }, []);
+  }, [currentPage]);
+
   const navigate = useNavigate();
-
   const handleSubmit = async (userId, data) => {
-    // htmlToImage
-    //   .toPng(matricNumber)
-    //   .then(function (dataUrl) {
-    //     setQrcodeImage(dataUrl);
-
-    //   })
-    //   .catch(function (error) {
-    //     console.error("Error generating QR code:", error);
-    //   });
     setLoading(true);
     try {
       const response = await axios.post(
@@ -153,7 +152,16 @@ const ProfileOverview = () => {
               )
             )
         ) : (
-          <div>Loading</div>
+          <div className="bg-blue-500 rounded-[50%] w-[40px] h-[40px]">
+            <img src={loader} className="animate-spin" alt="loader" />
+          </div>
+        )}
+      </div>
+      <div className="w-full text-center">
+        {users.length !== 0 && (
+          <div onClick={handlePageClick} className="cursor-pointer">
+            Load More
+          </div>
         )}
       </div>
     </div>
