@@ -13,6 +13,7 @@ import {
   Delete,
 } from "lucide-react";
 import logo from "../../assets/sdm2_logo.png";
+import print from "../../assets/print.png";
 import identityCardIcon from "../../assets/id-card.png";
 import registrationIcon from "../../assets/contact-form.png";
 import documentIcon from "../../assets/manage.png";
@@ -100,7 +101,7 @@ export default function Sidebar() {
                 />
 
                 <SidebarItem
-                  icon={<UserCircle size={24} />}
+                  icon={<img src={print} alt="Id Card" className="w-5" />}
                   text="Print idcard"
                   to="/print-id-card"
                   id="print"
