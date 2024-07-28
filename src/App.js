@@ -61,7 +61,7 @@ export default function App() {
           <Route path="/identity-cards" element={<IdentityCards />}>
             <Route path="qr-code-display" element={<QrCodeDisplay />} />
           </Route>
-          <Route path="print-id-card" element={<PrintIDCard />} />
+          <Route path="/idcard/:id/print" element={<PrintIDCard />} />
           <Route path="/profile-overview" element={<ProfileOverview />} />
           <Route path="/edit-profile" element={<EditProfile />} />
         </Route>

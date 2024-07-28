@@ -41,7 +41,16 @@ const IdentityCards = () => {
         {idcards.length > 0 ? (
           idcards.map(
             (
-              { fullName, _id, matricNimber, level, department, email, userId,photo },
+              {
+                fullName,
+                _id,
+                matricNimber,
+                level,
+                department,
+                email,
+                userId,
+                photo,
+              },
               index
             ) => (
               <div
@@ -56,9 +65,15 @@ const IdentityCards = () => {
                     level,
                     department,
                     email,
-                    photo
+                    photo,
                   }}
                 />
+                <div
+                  className="bg-green-500 text-white cursor-pointer text-center w-full p-[1rem] rounded-md"
+                  onClick={() => navigate(`/idcard/${userId}/print`)}
+                >
+                  View Id Card Details
+                </div>
                 <div
                   className="bg-red-500 text-white cursor-pointer text-center w-full p-[1rem] rounded-md"
                   onClick={() => HandleDelete(userId)}
