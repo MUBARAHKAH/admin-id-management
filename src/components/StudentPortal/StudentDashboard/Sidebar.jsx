@@ -99,6 +99,14 @@ export default function Sidebar() {
                   link="/profile-overview"
                 />
 
+                <SidebarItem
+                  icon={<UserCircle size={24} />}
+                  text="Print idcard"
+                  to="/print-id-card"
+                  id="print"
+                  link="/print-id-card"
+                />
+
                 <div className="relative flex  flex-col gap-[1rem]  border-t  pt-[1rem] items-center">
                   <div
                     className={`left-[50px] cursor-pointer absolute top-0 p-[1rem] bg-gray-50 ${

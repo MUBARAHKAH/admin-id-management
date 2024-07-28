@@ -22,6 +22,7 @@ import DownloadIdCard from "./components/StudentPortal/StudentDashboard/Download
 import QrCodeDisplay from "./components/StudentPortal/StudentDashboard/QrCodeDisplay";
 import IdCardDetails from "./components/StudentPortal/IDcardDetails.jsx";
 import { useSession } from "./context/session.jsx";
+import PrintIDCard from "./components/StudentPortal/StudentDashboard/PrintIDCard";
 
 export default function App() {
   const { sessionData } = useSession();
@@ -60,7 +61,7 @@ export default function App() {
           <Route path="/identity-cards" element={<IdentityCards />}>
             <Route path="qr-code-display" element={<QrCodeDisplay />} />
           </Route>
-
+          <Route path="print-id-card" element={<PrintIDCard />} />
           <Route path="/profile-overview" element={<ProfileOverview />} />
           <Route path="/edit-profile" element={<EditProfile />} />
         </Route>
