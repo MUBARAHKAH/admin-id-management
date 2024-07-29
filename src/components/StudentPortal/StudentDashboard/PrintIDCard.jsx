@@ -3,6 +3,7 @@ import { useReactToPrint } from "react-to-print";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import logo from "../../assets/unilorin_logo2.png";
+import passport from "../../assets/passport.jpg";
 import Qr from "../../assets/Qr2.png";
 import { useParams } from "react-router-dom";
 const IDCard = React.forwardRef(({ idcardData }, ref) => (
@@ -11,7 +12,7 @@ const IDCard = React.forwardRef(({ idcardData }, ref) => (
     className="flex border max-lg:flex-col justify-center items-start space-x-8 p-4  "
   >
     {/* Front Side of the ID Card */}
-    <div className="sm:w-[70%] mt-10 border px-6 py-2 font-sans bg-white  flex flex-col justify-between rounded-3xl">
+    <div className="sm:w-[70%] h-full mt-0 border px-6 py-2 font-sans bg-white  flex flex-col justify-between rounded-3xl">
       <div className="flex flex-wrap justify-center items-center mb-4">
         <img
           src={logo}
@@ -27,7 +28,7 @@ const IDCard = React.forwardRef(({ idcardData }, ref) => (
         </div>
       </div>
       <div className="text-center mb-2">
-        <h3 className="text-blue-500 my-3 text-lg font-semibold mt-6">
+        <h3 className="text-red-500 my-3 text-lg font-semibold mt-6">
           STUDENT IDENTITY CARD
         </h3>
       </div>
@@ -39,36 +40,36 @@ const IDCard = React.forwardRef(({ idcardData }, ref) => (
       </div>
       <div className="flex max-lg:flex-col-reverse items-center justify-between mb-4">
         <div className="flex flex-col space-y-2 w-3/5">
-          <p className="text-md text-blue-500 my-3">
+          <p className="text-md text-blue-900 my-3">
             Name:{" "}
             <input
               type="text"
               value={idcardData.fullName}
-              className=" outline-none w-full font-bold bg-gray-100 rounded-md"
+              className=" outline-none w-full font-bold rounded-md"
             />
           </p>
-          <p className="text-md text-blue-500 my-3">
+          <p className="text-md text-blue-900 my-3">
             Matric No:{" "}
             <input
               type="text"
               value={idcardData.matricNimber}
-              className="outline-none w-full font-bold bg-gray-100 rounded-md"
+              className="outline-none w-full font-bold rounded-md"
             />
           </p>
-          <p className="text-md  text-blue-500 my-3">
+          <p className="text-md  text-blue-900 my-3">
             Email:{" "}
             <input
               type="text"
               value={idcardData.email}
-              className=" outline-none w-full font-bold bg-gray-100 rounded-md"
+              className=" outline-none w-full font-bold  rounded-md"
             />
           </p>
-          <p className="text-md text-blue-500 my-3">
+          <p className="text-md text-blue-900 my-3">
             Department:{" "}
             <input
               type="text"
               value={idcardData.department}
-              className="outline-none w-full font-bold bg-gray-100 rounded-md "
+              className="outline-none w-full font-bold rounded-md "
             />
           </p>
         </div>
@@ -83,7 +84,7 @@ const IDCard = React.forwardRef(({ idcardData }, ref) => (
     </div>
 
     {/* Back Side of the ID Card */}
-    <div className=" h-96 mt-32 border w-full  p-4 font-sans bg-white  flex flex-col justify-between rounded-3xl">
+    <div className="sm:w-[70%]  h-full mt-0 border px-6 py-8 font-sans bg-white  flex flex-col justify-between rounded-3xl">
       <div>
         <p className="text-sm mb-4">
           This identity card is not transferable. It must be produced at any
@@ -152,10 +153,10 @@ const PrintIDCard = () => {
     <div className="flex">
       <div className="flex flex-col items-center  w-full p-4">
         <IDCard ref={componentRef} idcardData={idcard} />
-        <div className="flex justify-center mt-2 space-x-4">
+        <div className="flex justify-center mt-4 space-x-4">
           <button
             onClick={handlePrint}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-blue-900 text-white px-4 py-2 rounded"
           >
             Print ID Card
           </button>

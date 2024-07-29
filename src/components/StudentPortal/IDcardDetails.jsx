@@ -34,6 +34,9 @@ const IdCardDetails = ({ data }) => {
           <strong>Level </strong> <p className="text-right">{level}</p>
         </div>
         <div className="flex-col gap-[0.5rem] text-gray-600 mb-6 flex w-full  justify-between">
+          <strong>Faculty </strong> <p className="text-right">{faculty}</p>
+        </div>
+        <div className="flex-col gap-[0.5rem] text-gray-600 mb-6 flex w-full  justify-between">
           <strong>Email </strong> <p className="text-right">{email}</p>
         </div>
       </div>
